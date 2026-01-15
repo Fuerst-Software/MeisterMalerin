@@ -517,3 +517,105 @@ a{color:inherit}
     margin-top: 18px;
   }
 }
+/* =========================
+   FOOTER – white, clean, brand-consistent
+========================= */
+.footer{
+  background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+/* Wrapper */
+.footer__inner{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:18px;
+  padding:22px 0;
+  flex-wrap:wrap;
+}
+
+/* Links – ruhig, professionell */
+.footerLink{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,.08);
+  color: #1a1a1a;
+  transition: border-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+/* Icon */
+.footerLink__icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  border: 1px solid rgba(0,0,0,.10);
+  color: #1a1a1a;
+}
+
+/* Text */
+.footerLink__label{
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .2px;
+  color: #1a1a1a;
+}
+
+/* Hover – exakt derselbe Orange-Ton wie Buttons */
+.footerLink:hover{
+  transform: translateY(-1px);
+  border-color: #f36c00;   /* BRAND ORANGE */
+  color: #f36c00;
+}
+
+.footerLink:hover .footerLink__icon{
+  border-color: #f36c00;
+  color: #f36c00;
+}
+
+/* Focus */
+.footerLink:focus-visible{
+  outline: 2px solid rgba(243,108,0,.45);
+  outline-offset: 3px;
+}
+
+/* Copyright */
+.footerCopy{
+  margin-left:auto;
+  color: rgba(0,0,0,.55);
+  font-size: 13px;
+  letter-spacing: .2px;
+}
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 680px){
+  .footer__inner{
+    justify-content:center;
+    gap:12px;
+    padding:18px 0 20px;
+  }
+
+  .footerLink{
+    flex: 1 1 calc(33.333% - 10px);
+    justify-content:center;
+    min-width: 120px;
+  }
+
+  .footerCopy{
+    width:100%;
+    margin-left:0;
+    margin-top:10px;
+    text-align:center;
+  }
+}
