@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leistungen – Meistermalerin</title>
+  <meta name="description" content="Leistungen der Meistermalerin: Maler- & Lackierarbeiten, Fassadengestaltung, Stuckprofile, Tapeten & Anstriche, Bodenverlegung, Holzbauteile, Spachtelarbeiten, Renovierung & Reparatur." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <a class="skip" href="#content">Zum Inhalt springen</a>
+
+  <!-- TOPBAR -->
+  <header class="topbar" id="top">
+    <div class="wrap topbar__inner">
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a class="brand" href="../index.html" aria-label="Startseite">
+          <img src="../img/Logo.png" alt="Meistermalerin Logo">
+        </a>
+
+       <div class="nav__links" aria-label="Navigation (Desktop)">
+          <a class="nav__link" href="../index.html">Start</a>
+          <a class="nav__link" href="index.html">Leistungen</a>
+          <a class="nav__link" href="../aboutme/index.html">Über mich</a>
+          <a class="nav__link" href="../projekte/index.html">Projekte</a>
+        </div>
+
+        <div class="nav__right">
+          <a class="nav__btn" href="../index.html#kontakt">Anfrage</a>
+          <a class="nav__icon" href="tel:+49123456789" aria-label="Telefon">☎</a>
+
+          <button class="nav__burger" type="button"
+                  aria-label="Menü öffnen"
+                  aria-expanded="false"
+                  aria-controls="navMobile">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="navMobile" id="navMobile" hidden>
+        <a href="../index.html#content">Start</a>
+        <a href="#content" aria-current="page">Leistungen</a>
+        <a href="../index.html#versprechen">Versprechen</a>
+        <a href="../index.html#kontakt">Kontakt</a>
+        <a href="../projekte/index.html">Projekte</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+
+    
+
+    <!-- QUICK CHIPS -->
+    <section class="chipBar" aria-label="Schnellnavigation Leistungen">
+      <div class="wrap">
+        <div class="chipBar__row" data-chipbar>
+          <a class="chip" href="#maler-lackier">Maler & Lackier</a>
+          <a class="chip" href="#fassade">Fassade</a>
+          <a class="chip" href="#stuck">Stuckprofile</a>
+          <a class="chip" href="#tapeten">Tapeten</a>
+          <a class="chip" href="#boden">Boden</a>
+          <a class="chip" href="#holz">Holz</a>
+          <a class="chip" href="#spachtel">Spachtel</a>
+          <a class="chip" href="#lackier">Lackier</a>
+          <a class="chip" href="#renovierung">Renovierung</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID OVERVIEW -->
+    <section class="section" id="grid" aria-labelledby="gridTitle">
+      <div class="wrap">
+        <header class="sectionHead">
+          <p class="kicker">Übersicht</p>
+          <h2 class="sectionTitle" id="gridTitle">Leistungen im Überblick</h2>
+          <p class="sectionSub">Klicken Sie eine Leistung an – Details öffnen sich direkt darunter.</p>
+        </header>
+
+        <div class="overviewGrid">
+          <a class="overviewCard" href="#maler-lackier" data-open-detail>
+            <div class="overviewMedia"><img src="../img/malerinwand.png" alt="Maler- und Lackierarbeiten" loading="lazy"></div>
+            <div class="overviewBody"><h3>Maler- und Lackierarbeiten</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#fassade" data-open-detail>
+            <div class="overviewMedia"><img src="../img/hausfasade.png" alt="Fassadengestaltung" loading="lazy"></div>
+            <div class="overviewBody"><h3>Fassadengestaltung</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#stuck" data-open-detail>
+            <div class="overviewMedia"><img src="../img/stuckdecke.png" alt="Stuckprofile" loading="lazy"></div>
+            <div class="overviewBody"><h3>Stuckprofile</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#tapeten" data-open-detail>
+            <div class="overviewMedia"><img src="../img/tapeterolle.png" alt="Tapeten und Anstriche" loading="lazy"></div>
+            <div class="overviewBody"><h3>Tapeten und Anstriche</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#boden" data-open-detail>
+            <div class="overviewMedia"><img src="../img/bodenarbeit.png" alt="Bodenverlegung" loading="lazy"></div>
+            <div class="overviewBody"><h3>Bodenverlegung</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#holz" data-open-detail>
+            <div class="overviewMedia"><img src="../img/gartenhütte.png" alt="Holzbauteile" loading="lazy"></div>
+            <div class="overviewBody"><h3>Holzbauteile</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#spachtel" data-open-detail>
+            <div class="overviewMedia"><img src="../img/malerindecke.png" alt="Spachtelarbeiten" loading="lazy"></div>
+            <div class="overviewBody"><h3>Spachtelarbeiten</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#lackier" data-open-detail>
+            <div class="overviewMedia"><img src="../img/zweimaler.png" alt="Lackierarbeiten" loading="lazy"></div>
+            <div class="overviewBody"><h3>Lackierarbeiten</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+
+          <a class="overviewCard" href="#renovierung" data-open-detail>
+            <div class="overviewMedia"><img src="../img/malerinausenwand.png" alt="Renovierung & Reparatur" loading="lazy"></div>
+            <div class="overviewBody"><h3>Renovierung & Reparatur</h3><span class="overviewLink">Details öffnen</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILS (Accordion) -->
+    <section class="section section--tight detailsWrap" data-details-wrap data-has-open="false" aria-label="Leistungen Details">
+
+      <div class="wrap">
+
+        <!-- NOTE: Alles geschlossen per default (data-collapsed="true") -->
+        <article class="detailCard" id="maler-lackier" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/malerinwand.png" alt="Maler- und Lackierarbeiten" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Maler- und Lackierarbeiten</h2>
+            <p>Präzise Ausführung, saubere Kanten und gleichmäßige Flächen – für ein hochwertiges Gesamtbild.</p>
+            <ul class="bullet">
+              <li>Wände & Decken – sauber, gleichmäßig, langlebig</li>
+              <li>Abdecken & Schutz – ordentlich bis zum Schluss</li>
+              <li>Innenräume mit harmonischer Farbwirkung</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Anfrage senden</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="fassade" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/hausfasade.png" alt="Fassadengestaltung" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Fassadengestaltung</h2>
+            <p>Witterungsschutz trifft Optik: eine Fassade, die gut aussieht und dauerhaft schützt.</p>
+            <ul class="bullet">
+              <li>Fassadenanstrich & Auffrischung</li>
+              <li>Ausbesserungen, Risse, Untergrundaufbau</li>
+              <li>Saubere Kanten & Anschlüsse</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Unverbindlich anfragen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="stuck" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/stuckdecke.png" alt="Stuckprofile" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Stuckprofile</h2>
+            <p>Elegante Details, die Räume aufwerten – sauber montiert und ins Gesamtbild integriert.</p>
+            <ul class="bullet">
+              <li>Stuckleisten, Übergänge & Akzente</li>
+              <li>Exakte Gehrungen & saubere Fugen</li>
+              <li>Dezent – aber mit Wirkung</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Beratung anfragen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="tapeten" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/tapeterolle.png" alt="Tapeten und Anstriche" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Tapeten und Anstriche</h2>
+            <p>Sauber gesetzt, ohne Blasen, mit perfekten Übergängen – damit es am Ende wirklich „fertig“ wirkt.</p>
+            <ul class="bullet">
+              <li>Vlies- & Designtapeten</li>
+              <li>Untergrundvorbereitung & Spachtelung</li>
+              <li>Perfekte Anschlüsse & Kanten</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Jetzt anfragen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="boden" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/bodenarbeit.png" alt="Bodenverlegung" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Bodenverlegung</h2>
+            <p>Saubere Vorbereitung, exakte Anschlüsse – damit der Boden nicht nur gut aussieht, sondern sich bewährt.</p>
+            <ul class="bullet">
+              <li>Vorbereitung & Ausgleich</li>
+              <li>Übergänge & Sockelleisten</li>
+              <li>Präzise, sauber, langlebig</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Projekt besprechen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="holz" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/gartenhütte.png" alt="Holzbauteile" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Holzbauteile</h2>
+            <p>Schutz & Pflege für Holzoberflächen – wetterfest, sauber verarbeitet und optisch hochwertig.</p>
+            <ul class="bullet">
+              <li>Lasuren & Holzschutz</li>
+              <li>Außenbereiche (z. B. Gartenhütten)</li>
+              <li>Schleifen, Vorbereitung, sauberer Auftrag</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Anfrage senden</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="spachtel" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/malerindecke.png" alt="Spachtelarbeiten" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Spachtelarbeiten</h2>
+            <p>Die Basis für perfekte Ergebnisse: gerade Flächen, saubere Übergänge und solide Vorbereitung.</p>
+            <ul class="bullet">
+              <li>Ausbesserungen, Risse, Übergänge</li>
+              <li>Glätte & Vorbereitung für Endanstrich</li>
+              <li>Sauber bis in die Details</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Kurz anfragen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="lackier" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/zweimaler.png" alt="Lackierarbeiten" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Lackierarbeiten</h2>
+            <p>Gleichmäßige Oberfläche, saubere Kanten, hochwertiges Finish – Türen, Rahmen, Details.</p>
+            <ul class="bullet">
+              <li>Vorbereitung, Schleifen, Abdecken</li>
+              <li>Robust, pflegeleicht, sauberer Verlauf</li>
+              <li>Finish ohne „Wellen“ und Kanten</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Angebot anfragen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="detailCard" id="renovierung" data-detail data-collapsed="true">
+          <div class="detailMedia"><img src="../img/malerinausenwand.png" alt="Renovierung & Reparatur" loading="lazy"></div>
+          <div class="detailBody">
+            <h2>Renovierung & Reparatur</h2>
+            <p>Schnell, sauber, lösungsorientiert – damit’s am Ende wirklich „wie neu“ wirkt.</p>
+            <ul class="bullet">
+              <li>Schadstellen, Nacharbeiten, Ausbesserungen</li>
+              <li>Sauberer Abschluss ohne Baustellen-Chaos</li>
+              <li>Perfekt für kleine und größere Maßnahmen</li>
+            </ul>
+            <div class="detailActions">
+              <a class="btn btn--primary" href="../index.html#kontakt">Jetzt anfragen</a>
+              <button class="btn btn--ghost" type="button" data-close-detail>Schließen</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <a class="footerItem" href="../index.html#kontakt" aria-label="Kontakt">
+        <span class="footerIcon">☎</span>
+        <span class="footerLabel">Kontakt</span>
+      </a>
+      <a class="footerItem" href="../impressum.html" aria-label="Impressum">
+        <span class="footerIcon">📄</span>
+        <span class="footerLabel">Impressum</span>
+      </a>
+      <a class="footerItem" href="../datenschutz.html" aria-label="Datenschutz">
+        <span class="footerIcon">🔒</span>
+        <span class="footerLabel">Datenschutz</span>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
