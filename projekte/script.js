@@ -9,64 +9,41 @@
      -> Nur hier Bilder hinzufügen / löschen
      -> cat: innen | fassade | detail | boden | ...
   ========================= */
-  const PROJECTS = [
-    {
-      cat: "innen",
-      title: "Innenarbeiten – Saubere Kanten",
-      img: "../img/malerinwand.png",
-      desc: "Klarer Anstrich, saubere Abklebung, ruhiges Gesamtbild.",
-      subtitle: "Sauber & gleichmäßig"
-    },
-    {
-      cat: "detail",
-      title: "Stuckprofile – Detailfinish",
-      img: "../img/stuckdecke.png",
-      desc: "Saubere Übergänge und elegante Akzente für Räume.",
-      subtitle: "Elegant & präzise"
-    },
-    {
-      cat: "fassade",
-      title: "Fassadengestaltung – Frischer Look",
-      img: "../img/hausfasade.png",
-      desc: "Witterungsschutz + Optik: gleichmäßig & langlebig.",
-      subtitle: "Schutz & Optik"
-    },
-    {
-      cat: "detail",
-      title: "Tapeten – Saubere Übergänge",
-      img: "../img/tapeterolle.png",
-      desc: "Exakte Anschlüsse – ohne Blasen, ohne Kanten.",
-      subtitle: "Ruhiges Gesamtbild"
-    },
-    {
-      cat: "boden",
-      title: "Boden – Vorbereitung & Finish",
-      img: "../img/bodenarbeit.png",
-      desc: "Sauber vorbereitet, exakte Übergänge – langlebig.",
-      subtitle: "Exakte Anschlüsse"
-    },
-    {
-      cat: "innen",
-      title: "Spachtelarbeiten – Basis für Perfektion",
-      img: "../img/malerindecke.png",
-      desc: "Gerade Flächen und saubere Übergänge als Grundlage.",
-      subtitle: "Perfekte Grundlage"
-    },
-    {
-      cat: "detail",
-      title: "Lackierarbeiten – Sauberes Finish",
-      img: "../img/zweimaler.png",
-      desc: "Gleichmäßiger Verlauf, robustes Ergebnis, sauber abgeklebt.",
-      subtitle: "Robust & sauber"
-    },
-    {
-      cat: "fassade",
-      title: "Renovierung – Reparatur & Auffrischung",
-      img: "../img/malerinausenwand.png",
-      desc: "Schadstellen ausgebessert – Ergebnis wie neu.",
-      subtitle: "Schnell & sauber"
-    }
-  ];
+const PROJECTS = [
+  // Innen / Malerarbeiten
+  { cat:"innen", title:"Innenarbeiten – Wand",      img:"../img/malerinwand.png",        desc:"Gleichmäßiger Anstrich und saubere Kanten – ruhiges Gesamtbild.", subtitle:"Sauber & gleichmäßig" },
+  { cat:"innen", title:"Innenarbeiten – Action",    img:"../img/malerinaction.png",     desc:"Präzise Ausführung im Detail – sauber abgeklebt und ordentlich umgesetzt.", subtitle:"Präzise & sauber" },
+  { cat:"innen", title:"Innenarbeiten – Decke",     img:"../img/malerindecke.png",      desc:"Deckenflächen sauber vorbereitet und gleichmäßig ausgeführt.", subtitle:"Klar & ruhig" },
+  { cat:"innen", title:"Innenarbeiten – Dach",      img:"../img/malerdachgeschoss.png", desc:"Sauberer Ablauf im Dachgeschoss – klar, ordentlich, professionell.", subtitle:"Sauber umgesetzt" },
+
+  // Außen / Fassade
+  { cat:"fassade", title:"Außen – Haus",            img:"../img/hausganz.png",          desc:"Außenansicht – saubere Gesamtwirkung und klare Linien.", subtitle:"Außenansicht" },
+  { cat:"fassade", title:"Außen – Garten",          img:"../img/hausgarten.png",        desc:"Außenwirkung im Gesamtbild – gepflegt, sauber, stimmig.", subtitle:"Gesamtbild" },
+  { cat:"fassade", title:"Außen – Eingang/Geländer",img:"../img/hausundgelander.png",   desc:"Außenbereiche sauber umgesetzt – klare Linien, ordentliches Ergebnis.", subtitle:"Außen sauber" },
+  { cat:"fassade", title:"Außen – Renovierung",     img:"../img/malerinausenwand.png",  desc:"Auffrischung und Ausbesserung – Ergebnis wirkt wie neu.", subtitle:"Wie neu" },
+
+  // Details / Stuck / Tapete / Lack
+  { cat:"detail", title:"Stuck – Decke",            img:"../img/stuckdecke.png",        desc:"Stuckdetails als eleganter Abschluss – sauber montiert und integriert.", subtitle:"Elegant & präzise" },
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapeterolle.png",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.", subtitle:"Ruhig & sauber" },
+  { cat:"detail", title:"Lackierarbeiten – Finish", img:"../img/zweimaler.png",         desc:"Sauberer Verlauf und hochwertiges Finish – robust und pflegeleicht.", subtitle:"Robust & sauber" },
+  { cat:"detail", title:"Rolle/Abkleben",           img:"../img/malerrolle.png",        desc:"Saubere Vorbereitung – die Basis für ein perfektes Finish.", subtitle:"Basis fürs Finish" },
+
+  // Treppen (Details)
+  { cat:"detail", title:"Treppe – Braun",           img:"../img/treppebraun.png",       desc:"Treppenbereich sauber bearbeitet – gleichmäßiges Finish.", subtitle:"Sauberer Verlauf" },
+  { cat:"detail", title:"Treppe – In Arbeit",       img:"../img/treppeinarbeit.png",    desc:"Vorbereitung und Bearbeitung im Prozess – ordentlich und präzise.", subtitle:"In Arbeit" },
+  { cat:"detail", title:"Treppe – Weiß",            img:"../img/treppeweiss.png",       desc:"Klare, saubere Optik – gleichmäßig und hochwertig ausgeführt.", subtitle:"Klar & clean" },
+  { cat:"detail", title:"Wendeltreppe",             img:"../img/wendltreppe.png",       desc:"Detailarbeit an der Wendeltreppe – saubere Anschlüsse.", subtitle:"Detailarbeit" },
+  { cat:"detail", title:"Wendeltreppe – Unten",     img:"../img/wendltreppeunten.png",  desc:"Präzise Ausführung bis in den unteren Bereich.", subtitle:"Sauber bis unten" },
+
+  // Terrasse / Sonstiges
+  { cat:"fassade", title:"Terrasse",               img:"../img/terasse.png",            desc:"Außenfläche sauber gepflegt – ordentliches Finish.", subtitle:"Außenbereich" },
+
+  // Optional (wenn du’s drin haben willst)
+  { cat:"detail", title:"Melanie – Portrait",      img:"../img/melanie.png",            desc:"Portraitaufnahme – optional für Vertrauen/Authentizität.", subtitle:"Portrait" },
+];
+
+
+  
 
   /* =========================
      Mobile Navigation
