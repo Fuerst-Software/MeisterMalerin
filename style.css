@@ -802,3 +802,29 @@ main{
     text-align:center;
   }
 }
+/* =========================
+   BURGER – ULTRA SLIM (FINAL)
+========================= */
+.nav__burger{
+  width: 20px;              /* echte visuelle Breite */
+  height: 16px;
+  padding: 0;
+  margin-left: 6px;         /* Abstand zur Anfrage-Taste */
+  background: transparent;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Linien bewusst kürzer als Container */
+.nav__burger span{
+  width: 18px;              /* 🔥 DAS macht ihn schmal */
+  height: 1.5px;            /* fein & hochwertig */
+  background-color: #1a1a1a;
+  border-radius: 2px;
+  display: block;
+}
+
