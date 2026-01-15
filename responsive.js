@@ -329,3 +329,45 @@
   window.addEventListener("resize", setTopbarVar, { passive: true });
 
 })();
+/* =========================
+   HERO TEXT – PERFECT CENTER FIX
+========================= */
+(function () {
+  "use strict";
+
+  const centerHeroText = () => {
+    const hero = document.querySelector(".hero__center");
+    const title = document.querySelector(".hero__name");
+
+    if (!hero || !title) return;
+
+    // Reset
+    title.style.transform = "";
+    title.style.marginLeft = "";
+    title.style.marginRight = "";
+
+    // tatsächliche Breiten messen
+    const heroWidth = hero.clientWidth;
+    const titleWidth = title.scrollWidth;
+
+    // Wenn Text breiter als Container → sauber korrigieren
+    if (titleWidth > heroWidth) {
+      const diff = (titleWidth - heroWidth) / 2;
+
+      title.style.transform = `translateX(-${diff}px)`;
+    }
+
+    // harte Absicherung gegen Überlaufen
+    title.style.maxWidth = "100%";
+    title.style.overflowWrap = "anywhere";
+    title.style.textAlign = "center";
+  };
+
+  // Initial
+  window.addEventListener("load", centerHeroText);
+
+  // Bei Resize / Orientation Change
+  window.addEventListener("resize", () => {
+    window.requestAnimationFrame(centerHeroText);
+  });
+})();
