@@ -692,3 +692,9 @@ main{
   content: none !important;
   display: none !important;
 }
+/* Mobile Nav zuverlässig sichtbar + über allem */
+.navMobile.is-open { display: block !important; }
+.navMobile { z-index: 9999; }
+
+/* iOS safe viewport */
+.hero { min-height: calc(var(--vh, 1vh) * 100); }
