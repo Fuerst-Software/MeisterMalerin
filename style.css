@@ -698,3 +698,5 @@ main{
 
 /* iOS safe viewport */
 .hero { min-height: calc(var(--vh, 1vh) * 100); }
+.navMobile.is-open { display:block !important; }
+.hero { min-height: calc(var(--vh, 1vh) * 100); }
