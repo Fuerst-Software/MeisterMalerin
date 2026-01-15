@@ -827,4 +827,29 @@ main{
   border-radius: 2px;
   display: block;
 }
+/* =========================
+   HERO BOX – mehr Transparenz
+========================= */
+/* =========================
+   HERO BOX – MAX TRANSPARENZ (FINAL OVERRIDE)
+========================= */
+/* =========================
+   HERO BOX – ULTRA TRANSPARENT
+========================= */
+.hero__center{
+  background: rgba(255,255,255,0.30) !important;  /* 🔥 sehr transparent */
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(8px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(1.08) !important;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.16) !important;
+}
 
+/* Overlay weiter entschärfen */
+.hero__overlay{
+  background:
+    radial-gradient(
+      900px 520px at 50% 50%,
+      rgba(0,0,0,.02),
+      rgba(0,0,0,.22)
+    ) !important;
+}
