@@ -43,9 +43,12 @@
 
   if (slideHost) {
     const images = [
+      "img/malerrolle.png",
+      "img/melanie.png",
+      "img/stuckdecke.png",
+      "img/badezimmerschon.png",
       "img/malerinwand.png",
       "img/malerinausenwand.png",
-      "img/malerindecke.png",
       "img/hausfasade.png",
       "img/bodenarbeit.png",
       "img/zweimaler.png"
@@ -74,213 +77,218 @@
   }
 
   /* ==================================================
-     LEISTUNGEN CAROUSEL — GPU SMOOTH LOOP (LEFT -> RIGHT)
-     - Autoplay via translate3d (no scrollLeft jitter)
-     - Arrows: snap to next/prev card
-     - Pause on hover/focus, keyboard support
-  ================================================== */
-  const viewport = document.querySelector("[data-carousel-viewport]");
-  const track = document.querySelector("[data-carousel-track]");
-  const prevBtn = document.querySelector("[data-carousel-prev]");
-  const nextBtn = document.querySelector("[data-carousel-next]");
+   LEISTUNGEN CAROUSEL — SNAP + SWIPE + STOP ON INTERACTION
+   - Swipe/Drag (touch + mouse)
+   - Arrows: snap exakt auf nächste/vorherige Card
+   - Autoplay läuft nur bis zur ersten Interaktion, dann STOP dauerhaft
+================================================== */
+const viewport = document.querySelector("[data-carousel-viewport]");
+const track = document.querySelector("[data-carousel-track]");
+const prevBtn = document.querySelector("[data-carousel-prev]");
+const nextBtn = document.querySelector("[data-carousel-next]");
 
-  if (viewport && track) {
-    const originals = Array.from(track.children);
-    if (originals.length >= 2) {
-      // Create a seamless second set (append clones once)
-      const cloneFrag = document.createDocumentFragment();
-      originals.forEach((el) => cloneFrag.appendChild(el.cloneNode(true)));
-      track.appendChild(cloneFrag);
+if (viewport && track) {
+  const originals = Array.from(track.children);
+  if (originals.length >= 2) {
+    // Clone set once for seamless looping
+    const cloneFrag = document.createDocumentFragment();
+    originals.forEach((el) => cloneFrag.appendChild(el.cloneNode(true)));
+    track.appendChild(cloneFrag);
 
-      // We animate the track inside the viewport using translateX
-      let offset = 0;           // px, negative moves left, positive moves right
-      let setWidth = 0;         // width of one original set (before clones)
-      let cardStep = 0;         // one-card step including gap
-      let rafId = 0;
-      let lastTs = 0;
-      let paused = false;
-      let seeking = false;      // when arrow click animates to a snap point
-      let seekTarget = 0;
+    let offset = 0;      // translateX in px (negative moves left)
+    let setWidth = 0;    // width of one original set
+    let cardStep = 0;    // card width + gap
+    let rafId = 0;
+    let lastTs = 0;
 
-      const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    let userInteracted = false; // <- sobald true: autoplay AUS forever
+    let dragging = false;
+    let pointerId = null;
+    let startX = 0;
+    let startOffset = 0;
+    let moved = 0;
 
-      // Speed: px per second (slow & premium)
-      const SPEED = prefersReduced ? 0 : 22; // <- adjust if you want slower/faster
+    let seeking = false;
+    let seekTarget = 0;
 
-      const gapPx = () => {
-        const cs = getComputedStyle(track);
-        const g = parseFloat(cs.columnGap || cs.gap || "16");
-        return Number.isFinite(g) ? g : 16;
-      };
+    const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const SPEED = prefersReduced ? 0 : 22; // px/s
 
-      const measure = () => {
-        // Measure one original set width by summing first N original children widths + gaps
-        const gap = gapPx();
-        let w = 0;
-        for (let i = 0; i < originals.length; i++) {
-          const rect = originals[i].getBoundingClientRect();
-          w += rect.width;
-          if (i !== originals.length - 1) w += gap;
+    const gapPx = () => {
+      const cs = getComputedStyle(track);
+      const g = parseFloat(cs.columnGap || cs.gap || "16");
+      return Number.isFinite(g) ? g : 16;
+    };
+
+    const apply = (x) => {
+      track.style.transform = `translate3d(${x}px,0,0)`;
+    };
+
+    const normalize = (x) => {
+      if (!setWidth) return x;
+      // keep in [-setWidth, 0)
+      let n = x % setWidth;
+      if (n > 0) n -= setWidth;
+      return n;
+    };
+
+    const measure = () => {
+      const gap = gapPx();
+      let w = 0;
+      for (let i = 0; i < originals.length; i++) {
+        w += originals[i].getBoundingClientRect().width;
+        if (i !== originals.length - 1) w += gap;
+      }
+      const cs = getComputedStyle(track);
+      const padL = parseFloat(cs.paddingLeft || "0") || 0;
+      const padR = parseFloat(cs.paddingRight || "0") || 0;
+
+      setWidth = w + padL + padR;
+      cardStep = (originals[0]?.getBoundingClientRect().width || 360) + gap;
+
+      offset = normalize(offset);
+      apply(offset);
+    };
+
+    // --- Snap logic: immer exakt auf cardStep Raster
+    const snapNearest = (x) => {
+      if (!cardStep) return x;
+      const snapped = Math.round(x / cardStep) * cardStep;
+      return normalize(snapped);
+    };
+
+    const currentIndex = () => {
+      // Index bezogen auf Raster: je negativer offset, desto weiter "next"
+      if (!cardStep) return 0;
+      return Math.round((-offset) / cardStep);
+    };
+
+    const snapToIndex = (idx) => {
+      userInteracted = true;      // stop autoplay forever
+      seeking = true;
+      seekTarget = normalize(-(idx * cardStep));
+    };
+
+    const snapBy = (dir /* +1 next, -1 prev */) => {
+      userInteracted = true;      // stop autoplay forever
+      const idx = currentIndex();
+      snapToIndex(idx + (dir > 0 ? 1 : -1));
+    };
+
+    // Smooth seek animation
+    const tick = (ts) => {
+      if (!lastTs) lastTs = ts;
+      const dt = Math.min(0.05, (ts - lastTs) / 1000);
+      lastTs = ts;
+
+      // Autoplay nur solange der User NICHT interagiert hat
+      if (!userInteracted && !dragging && !seeking && SPEED > 0) {
+        // left->right look: move offset toward 0 (less negative)
+        offset += SPEED * dt;
+        offset = normalize(offset);
+        apply(offset);
+      }
+
+      if (seeking) {
+        const diff = seekTarget - offset;
+        offset += diff * 0.22; // easing
+        if (Math.abs(diff) < 0.6) {
+          offset = seekTarget;
+          seeking = false;
         }
-        // track has padding via CSS (8px on each side in your file) -> include it
-        // We'll read actual padding to be correct.
-        const cs = getComputedStyle(track);
-        const padL = parseFloat(cs.paddingLeft || "0") || 0;
-        const padR = parseFloat(cs.paddingRight || "0") || 0;
-        setWidth = w + padL + padR;
+        offset = normalize(offset);
+        apply(offset);
+      }
 
-        // Step size (card width + gap)
-        const firstCard = originals[0];
-        cardStep = firstCard ? firstCard.getBoundingClientRect().width + gap : 380;
+      rafId = requestAnimationFrame(tick);
+    };
 
-        // Ensure offset stays in range after resize
-        offset = normalizeOffset(offset);
-        applyTransform(offset);
-        setCenterFocus();
-      };
+    // Buttons
+    nextBtn?.addEventListener("click", () => snapBy(+1));
+    prevBtn?.addEventListener("click", () => snapBy(-1));
 
-      const normalizeOffset = (x) => {
-        // We loop using two sets: when we've shifted one full set, wrap seamlessly
-        // Since we want left->right motion, offset increases.
-        // Keep x in (-setWidth .. 0] range for stable transforms:
-        // We'll represent positions as negative or 0 values.
-        // Convert any x to within [-setWidth, 0)
-        if (!setWidth) return x;
+    // Keyboard (optional nice)
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") snapBy(+1);
+      if (e.key === "ArrowLeft") snapBy(-1);
+    });
 
-        // Bring into range using modulo
-        let n = x % setWidth;
-        // Make negative range [-setWidth,0)
-        if (n > 0) n -= setWidth;
-        return n;
-      };
+    // Prevent any scrollLeft jitter (we use transform)
+    viewport.addEventListener("scroll", () => {
+      if (viewport.scrollLeft !== 0) viewport.scrollLeft = 0;
+    });
 
-      const applyTransform = (x) => {
-        // GPU transform
-        track.style.transform = `translate3d(${x}px, 0, 0)`;
-      };
+    // --- Swipe / Drag (Pointer Events)
+    // Wichtig: in CSS am besten: [data-carousel-viewport]{ touch-action: pan-y; }
+    const onDown = (e) => {
+      // only primary button / touch
+      if (e.pointerType === "mouse" && e.button !== 0) return;
 
-      const setCenterFocus = () => {
-        // highlight card nearest viewport center for premium feel
-        const cards = Array.from(track.querySelectorAll(".serviceCard"));
-        if (!cards.length) return;
+      userInteracted = true; // sobald anfassen: autoplay aus
+      dragging = true;
+      seeking = false;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startOffset = offset;
+      moved = 0;
 
-        const vr = viewport.getBoundingClientRect();
-        const cx = vr.left + vr.width / 2;
+      viewport.setPointerCapture?.(pointerId);
+    };
 
-        let best = null;
-        let bestDist = Infinity;
+    const onMove = (e) => {
+      if (!dragging || e.pointerId !== pointerId) return;
+      const dx = e.clientX - startX;
+      moved = dx;
 
-        for (const c of cards) {
-          const r = c.getBoundingClientRect();
-          const dist = Math.abs((r.left + r.width / 2) - cx);
-          if (dist < bestDist) {
-            bestDist = dist;
-            best = c;
-          }
-        }
+      // Drag feel: move with finger (dx positive -> move right)
+      offset = normalize(startOffset + dx);
+      apply(offset);
+    };
 
-        cards.forEach((c) => c.classList.remove("is-center"));
-        if (best) best.classList.add("is-center");
-      };
+    const onUp = (e) => {
+      if (!dragging || e.pointerId !== pointerId) return;
+      dragging = false;
 
-      const animate = (ts) => {
-        if (!lastTs) lastTs = ts;
-        const dt = Math.min(0.05, (ts - lastTs) / 1000); // cap delta (stability)
-        lastTs = ts;
+      const threshold = Math.min(90, viewport.getBoundingClientRect().width * 0.18);
 
-        if (!paused && SPEED > 0 && !seeking) {
-          // left->right: increase offset toward 0 (less negative)
-          offset += SPEED * dt;
-          // keep in [-setWidth,0)
-          offset = normalizeOffset(offset);
-          applyTransform(offset);
-        }
-
-        if (seeking) {
-          // Smooth snap toward target
-          const diff = seekTarget - offset;
-          const step = diff * 0.18; // easing
-          offset += step;
-
-          // Stop condition
-          if (Math.abs(diff) < 0.6) {
-            offset = seekTarget;
-            seeking = false;
-          }
-
-          offset = normalizeOffset(offset);
-          applyTransform(offset);
-        }
-
-        // center focus (not every frame to save cpu)
-        // do it every ~120ms
-        if (ts % 120 < 16) setCenterFocus();
-
-        rafId = requestAnimationFrame(animate);
-      };
-
-      const pause = () => { paused = true; };
-      const resume = () => { if (!prefersReduced) paused = false; };
-
-      // Snap helpers:
-      // We want current center card to align nicely after arrow clicks.
-      // We'll move by exactly one cardStep in desired direction.
-      const snapBy = (dir /* +1 right, -1 left */) => {
-        // Pause autoplay during snap
-        paused = true;
+      // swipe decision
+      if (moved <= -threshold) {
+        // dragged left => next card
+        snapBy(+1);
+      } else if (moved >= threshold) {
+        // dragged right => prev card
+        snapBy(-1);
+      } else {
+        // not enough => snap to nearest raster
+        userInteracted = true;
         seeking = true;
+        seekTarget = snapNearest(offset);
+      }
 
-        // We store offset in [-setWidth,0)
-        // For "next" (right arrow): move content to LEFT visually -> offset becomes more negative
-        // But user asked left->right autoplay; arrow semantics: right arrow = next item (to the right),
-        // meaning we should shift track LEFT so new items appear from right.
-        // So: next => offset -= cardStep
-        // prev => offset += cardStep
-        const target = dir > 0 ? (offset - cardStep) : (offset + cardStep);
+      pointerId = null;
+    };
 
-        seekTarget = normalizeOffset(target);
-        // After snap completes, resume after a tiny delay
-        window.setTimeout(() => { paused = false; }, 350);
-      };
+    viewport.addEventListener("pointerdown", onDown, { passive: true });
+    viewport.addEventListener("pointermove", onMove, { passive: true });
+    viewport.addEventListener("pointerup", onUp, { passive: true });
+    viewport.addEventListener("pointercancel", onUp, { passive: true });
 
-      nextBtn?.addEventListener("click", () => snapBy(+1));
-      prevBtn?.addEventListener("click", () => snapBy(-1));
+    // Init
+    track.style.willChange = "transform";
+    track.style.transform = "translate3d(0,0,0)";
 
-      viewport.addEventListener("mouseenter", pause);
-      viewport.addEventListener("mouseleave", resume);
-      viewport.addEventListener("focusin", pause);
-      viewport.addEventListener("focusout", resume);
+    requestAnimationFrame(() => {
+      measure();
+      // Startposition: leicht “innen”, aber trotzdem rasterbar
+      offset = snapNearest(normalize(-setWidth * 0.35));
+      apply(offset);
+      rafId = requestAnimationFrame(tick);
+    });
 
-      viewport.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") snapBy(+1);
-        if (e.key === "ArrowLeft") snapBy(-1);
-      });
-
-      // Important: track must not scroll; we control it via transform.
-      // Ensure viewport scrollLeft stays 0
-      viewport.addEventListener("scroll", () => {
-        if (viewport.scrollLeft !== 0) viewport.scrollLeft = 0;
-      });
-
-      // Init styles for transform carousel (avoid selection weirdness)
-      track.style.willChange = "transform";
-      track.style.transform = "translate3d(0,0,0)";
-
-      // Start with a stable negative offset so we see the original set nicely
-      requestAnimationFrame(() => {
-        measure();
-        offset = normalizeOffset(-setWidth * 0.35); // start a bit "inside" the band
-        applyTransform(offset);
-        setCenterFocus();
-        rafId = requestAnimationFrame(animate);
-      });
-
-      window.addEventListener("resize", () => {
-        // Re-measure after fonts/layout settle
-        window.setTimeout(measure, 50);
-      });
-    }
+    window.addEventListener("resize", () => setTimeout(measure, 50));
   }
+}
+
 
   /* =========================
      Contact Form Demo
