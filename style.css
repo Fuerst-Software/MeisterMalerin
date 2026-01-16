@@ -853,3 +853,4 @@ main{
       rgba(0,0,0,.22)
     ) !important;
 }
+[data-carousel-viewport]{ touch-action: pan-y; }
