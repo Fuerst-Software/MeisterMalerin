@@ -289,7 +289,7 @@
   </div>
 </section>
 
-    <!-- KONTAKT -->
+  <!-- KONTAKT -->
 <section class="section" id="kontakt" aria-labelledby="kontaktTitle">
   <div class="wrap narrow">
     <header class="sectionHead sectionHead--center">
@@ -309,27 +309,30 @@
              aria-hidden="true">
 
       <!-- Fixer Email-Betreff -->
-      <input type="hidden" name="_subject" value="Meistermalerin – Kontaktanfrage">
+      <input type="hidden" name="_subject" value="Kontakt Anfrage Meistermalerin.de">
+
+      <!-- Optionale: Antwort an Kunde (Reply-To) -->
+      <input type="hidden" name="_replyto" id="replyToField">
 
       <div class="form__row">
         <label>
           <span>Name</span>
-          <input name="name" required autocomplete="name">
+          <input name="Name" required autocomplete="name">
         </label>
         <label>
           <span>Telefon</span>
-          <input name="phone" inputmode="tel" autocomplete="tel">
+          <input name="Telefon" inputmode="tel" autocomplete="tel">
         </label>
       </div>
 
       <label>
         <span>E-Mail</span>
-        <input type="email" name="email" required autocomplete="email">
+        <input type="email" name="E-Mail" id="emailField" required autocomplete="email">
       </label>
 
       <label>
         <span>Nachricht</span>
-        <textarea name="message" rows="5" required></textarea>
+        <textarea name="Nachricht" rows="5" required></textarea>
       </label>
 
       <button class="btn btn--primary btn--full" type="submit" id="contactSubmit">
@@ -341,7 +344,7 @@
   </div>
 </section>
 
-<!-- Formspree Script (einfach hier lassen oder ganz unten vor </body>) -->
+<!-- Formspree Script -->
 <script>
 (() => {
   "use strict";
@@ -349,33 +352,34 @@
   const form = document.getElementById("contactForm");
   const note = document.getElementById("formNote");
   const btn  = document.getElementById("contactSubmit");
+  const emailInput = document.getElementById("emailField");
+  const replyTo = document.getElementById("replyToField");
   if (!form || !note || !btn) return;
 
-  const setNote = (msg, ok) => {
+  const setNote = (msg) => {
     note.textContent = msg;
     note.style.opacity = "1";
     note.style.marginTop = "10px";
-    // nutzt deine vorhandene Typo/Farben; nur minimaler Hint
-    note.style.color = ok ? "" : "var(--muted, #5f5f5f)";
   };
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // HTML5 Validation (required / email)
     if (!form.checkValidity()) {
       form.reportValidity();
-      setNote("Bitte prüfe deine Angaben – Name, E-Mail und Nachricht sind Pflicht.", false);
+      setNote("Bitte prüfen Sie Ihre Angaben – Name, E-Mail und Nachricht sind Pflicht.");
       return;
     }
 
-    // Honeypot: wenn ausgefüllt -> still abbrechen
+    // Set reply-to so you can answer directly to the customer
+    if (emailInput && replyTo) replyTo.value = emailInput.value.trim();
+
     const hp = form.querySelector('input[name="_gotcha"]');
     if (hp && hp.value.trim() !== "") return;
 
     const action = form.getAttribute("action");
     if (!action) {
-      setNote("Formular ist nicht korrekt konfiguriert (action fehlt).", false);
+      setNote("Formular ist nicht korrekt konfiguriert.");
       return;
     }
 
@@ -394,18 +398,17 @@
 
       if (res.ok) {
         form.reset();
-        setNote("Danke! Deine Anfrage ist eingegangen – wir melden uns zeitnah.", true);
+        setNote("Danke! Ihre Anfrage ist eingegangen – ich melde mich zeitnah.");
       } else {
-        // Formspree liefert JSON mit Fehlerdetails (wenn verfügbar)
-        let msg = "Ups – das hat nicht geklappt. Bitte versuch’s gleich nochmal.";
+        let msg = "Das hat leider nicht geklappt. Bitte versuchen Sie es erneut.";
         try {
           const j = await res.json();
           if (j && j.errors && j.errors.length) msg = j.errors.map(x => x.message).join(" ");
         } catch (_) {}
-        setNote(msg, false);
+        setNote(msg);
       }
-    } catch (err) {
-      setNote("Keine Verbindung gerade. Bitte prüfe dein Internet und versuch’s erneut.", false);
+    } catch (_) {
+      setNote("Keine Verbindung. Bitte prüfen Sie Ihr Internet und versuchen Sie es erneut.");
     } finally {
       btn.disabled = false;
       btn.textContent = oldText;
@@ -413,6 +416,7 @@
   });
 })();
 </script>
+
 
   </main>
 
