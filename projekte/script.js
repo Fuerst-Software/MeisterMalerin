@@ -12,20 +12,26 @@
 const PROJECTS = [
   // Innen / Malerarbeiten
   { cat:"innen", title:"Innenarbeiten – Wand",      img:"../img/malerinwand.png",        desc:"Gleichmäßiger Anstrich und saubere Kanten – ruhiges Gesamtbild.", },
-  { cat:"innen", title:"Innenarbeiten – Action",    img:"../img/malerinaction.png",     desc:"Präzise Ausführung im Detail – sauber abgeklebt und ordentlich umgesetzt.", },
+  
   { cat:"innen", title:"Innenarbeiten – Decke",     img:"../img/malerindecke.png",      desc:"Deckenflächen sauber vorbereitet und gleichmäßig ausgeführt.", },
   { cat:"innen", title:"Innenarbeiten – Dach",      img:"../img/malerdachgeschoss.png", desc:"Sauberer Ablauf im Dachgeschoss – klar, ordentlich, professionell.",  },
 
   // Außen / Fassade
-  { cat:"fassade", title:"Außen – Haus",            img:"../img/hausganz.png",          desc:"Außenansicht – saubere Gesamtwirkung und klare Linien.", },
-  { cat:"fassade", title:"Außen – Garten",          img:"../img/hausgarten.png",        desc:"Außenwirkung im Gesamtbild – gepflegt, sauber, stimmig.",  },
+  { cat:"fassade", title:"Außen – Haus",    img:"../img/malerinaction.png",     desc:"Präzise Ausführung im Detail – sauber abgeklebt und ordentlich umgesetzt.", },
+  { cat:"fassade", title:"Außen - Vorher – Haus",            img:"../img/hausganz.png",          desc:"Außenansicht – saubere Gesamtwirkung und klare Linien.", },
+  { cat:"fassade", title:"Außen - Nachher – Garten",          img:"../img/hausgarten.png",        desc:"Außenwirkung im Gesamtbild – gepflegt, sauber, stimmig.",  },
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapeteverpixelt.png",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
   { cat:"fassade", title:"Außen – Eingang/Geländer",img:"../img/hausundgelander.png",   desc:"Außenbereiche sauber umgesetzt – klare Linien, ordentliches Ergebnis.", },
   { cat:"fassade", title:"Außen – Renovierung",     img:"../img/malerinausenwand.png",  desc:"Auffrischung und Ausbesserung – Ergebnis wirkt wie neu.", },
 
   // Details / Stuck / Tapete / Lack
-  { cat:"detail", title:"Stuck – Decke",            img:"../img/stuckdecke.png",        desc:"Stuckdetails als eleganter Abschluss – sauber montiert und integriert.", },
-  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapeterolle.png",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
-  { cat:"detail", title:"Lackierarbeiten – Finish", img:"../img/zweimaler.png",         desc:"Sauberer Verlauf und hochwertiges Finish – robust und pflegeleicht.", },
+
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapeteabschnitt.jpeg",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapeteblumen.jpeg",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapetetuer.jpeg",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapetegruen.jpeg",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
+  { cat:"detail", title:"Tapete – Rolle",           img:"../img/tapetegelbblau.jpeg",       desc:"Saubere Anschlüsse ohne Blasen – ruhiges Gesamtbild.",  },
+  { cat:"detail", title:"Rolle/Malen – Finish", img:"../img/zweimaler.png",         desc:"Sauberer Verlauf und hochwertiges Finish – robust und pflegeleicht.", },
   { cat:"detail", title:"Rolle/Abkleben",           img:"../img/malerrolle.png",        desc:"Saubere Vorbereitung – die Basis für ein perfektes Finish.", },
 
   // Treppen (Details)
