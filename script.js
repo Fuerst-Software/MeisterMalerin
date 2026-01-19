@@ -49,7 +49,6 @@
       "img/badezimmerschon.png",
       "img/malerinwand.png",
       "img/malerinausenwand.png",
-      "img/hausfasade.png",
       "img/bodenarbeit.png",
       "img/zweimaler.png"
     ];
