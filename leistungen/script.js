@@ -1,4 +1,4 @@
-/* script.js — Leistungen: Mobile Nav + Accordion Details (ohne Leerraum) + Chips
+/* script.js — Leistungen: Mobile Nav + PERFECT Sticky-Offset Scroll + Accordion
    Ready to publish.
 */
 (() => {
@@ -36,7 +36,32 @@
   }
 
   /* =========================
-     Details Wrapper Toggle (keine Lücke)
+     PERFECT Sticky Offset (dynamisch)
+  ========================= */
+  const topbar = $(".topbar");
+  const chipBar = $(".chipBar");
+
+  const getStickyOffset = () => {
+    const topH = topbar ? Math.ceil(topbar.getBoundingClientRect().height) : 0;
+    const chipH = chipBar ? Math.ceil(chipBar.getBoundingClientRect().height) : 0;
+
+    // CSS Variablen immer aktuell -> scroll-margin-top passt auch perfekt
+    document.documentElement.style.setProperty("--topbarH", `${topH}px`);
+    document.documentElement.style.setProperty("--chipbarH", `${chipH}px`);
+
+    return topH + chipH + 16;
+  };
+
+  let scrollOffset = 0;
+  const recalc = () => (scrollOffset = getStickyOffset());
+
+  // initial + nach Laden (Fonts können Höhen ändern)
+  recalc();
+  window.addEventListener("load", recalc, { once: true });
+  window.addEventListener("resize", recalc, { passive: true });
+
+  /* =========================
+     Details / Accordion
   ========================= */
   const detailsWrap = $("[data-details-wrap]");
   const details = $$("[data-detail]");
@@ -44,16 +69,12 @@
   const chips = $$("[data-chipbar] .chip");
   const closers = $$("[data-close-detail]");
 
+  const getIdFromHash = (hash) => (hash || "").replace("#", "").trim();
+
   const setWrapOpen = (isOpen) => {
     if (!detailsWrap) return;
     detailsWrap.setAttribute("data-has-open", isOpen ? "true" : "false");
   };
-
-  const topbarH = 78;
-  const chipbarH = 52;
-  const scrollOffset = topbarH + chipbarH + 16;
-
-  const getIdFromHash = (hash) => (hash || "").replace("#", "").trim();
 
   const collapseAll = (exceptId = null) => {
     details.forEach((d) => {
@@ -67,36 +88,43 @@
   const setActiveChip = (id) => {
     chips.forEach((c) => c.classList.toggle("is-active", c.getAttribute("href") === `#${id}`));
   };
-
   const clearActiveChips = () => chips.forEach((c) => c.classList.remove("is-active"));
+
+  const scrollToPerfect = (target) => {
+    if (!target) return;
+    recalc();
+
+    // Bild oben perfekt sichtbar
+    const media = target.querySelector(".detailMedia") || target;
+
+    // 2x rAF: wartet auf Layout (Wrapper wird gerade eingeblendet)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        recalc();
+        const y = media.getBoundingClientRect().top + window.pageYOffset - scrollOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      });
+    });
+  };
 
   const expand = (id, { scroll = true } = {}) => {
     const target = document.getElementById(id);
     if (!target) return;
 
-    // Wrapper sichtbar machen -> JETZT erst entsteht Platz (gewollt)
     setWrapOpen(true);
 
-    // nur eins offen lassen
+    // nur eins offen
     collapseAll(id);
     target.setAttribute("data-collapsed", "false");
     setActiveChip(id);
 
-    if (scroll) {
-      // WICHTIG: scroll erst nachdem wrapper sichtbar ist (sonst falsche Position)
-      requestAnimationFrame(() => {
-        const y = target.getBoundingClientRect().top + window.pageYOffset - scrollOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      });
-    }
+    if (scroll) scrollToPerfect(target);
   };
 
   const closeCard = (card) => {
     if (!card) return;
     card.setAttribute("data-collapsed", "true");
     clearActiveChips();
-
-    // wenn danach nix mehr offen -> wrapper wieder weg (kein Leerraum)
     if (!anyOpen()) setWrapOpen(false);
   };
 
@@ -131,7 +159,7 @@
   });
 
   /* =========================
-     Close Buttons in Detail
+     Close Buttons
   ========================= */
   closers.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -143,31 +171,18 @@
   /* =========================
      Initial State
   ========================= */
-  // default: alles zu, wrapper weg
   collapseAll(null);
   setWrapOpen(false);
 
-  // deep link -> öffnet korrekt & positioniert richtig
   const initial = getIdFromHash(location.hash);
   if (initial) {
+    // kurz warten bis Layout/Fonts sitzen, dann öffnen & perfekt scrollen
     requestAnimationFrame(() => expand(initial, { scroll: true }));
   }
 
   /* =========================
-     Active Chip on Scroll (nur wenn offen)
+     Year in Footer
   ========================= */
-  const obs = new IntersectionObserver(
-    (entries) => {
-      if (!anyOpen()) return;
-
-      const best = entries
-        .filter((x) => x.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (best?.target?.id) setActiveChip(best.target.id);
-    },
-    { threshold: [0.35, 0.5, 0.65] }
-  );
-
-  details.forEach((d) => obs.observe(d));
+  const year = $("#year");
+  if (year) year.textContent = String(new Date().getFullYear());
 })();
