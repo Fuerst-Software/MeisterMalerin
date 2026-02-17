@@ -863,4 +863,24 @@ main{
 .footerCopy a:hover{
   text-decoration: underline;
 }
+.nav__right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav__call{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  text-decoration:none;
+  transition:transform .2s ease, opacity .2s ease;
+}
+
+.nav__call:hover{
+  transform:scale(1.06);
+}
 
