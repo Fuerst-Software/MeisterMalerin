@@ -45,7 +45,7 @@ const PROJECTS = [
   { cat:"fassade", title:"Terrasse",               img:"../img/terasse.png",            desc:"Außenfläche sauber gepflegt – ordentliches Finish.",  },
 
   // Optional (wenn du’s drin haben willst)
-    { cat:"detail", title:"Melanie – Portrait",      img:"../img/melanie.png",            desc:"Portraitaufnahme",  },
+    { cat:"detail", title:"Melanie Cugnata - Inhaberin",      img:"../img/melanie.png",            desc:"Meistermalerin seit 2014",  },
 ];
 
 
