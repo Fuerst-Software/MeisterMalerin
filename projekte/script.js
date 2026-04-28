@@ -12,7 +12,15 @@
 const PROJECTS = [
   // Innen / Malerarbeiten
   { cat:"innen", title:"Innenarbeiten – Wand",      img:"../img/malerinwand.png",        desc:"Gleichmäßiger Anstrich und saubere Kanten – ruhiges Gesamtbild.", },
-  
+
+{
+  cat: "team",
+  title: "Team",
+  img: "../img/malerteam.jpeg",
+  desc: "Hinter jedem Projekt steht ein starkes Team. Mit Erfahrung, Leidenschaft und dem Blick fürs Detail setzen wir Ihre Wünsche zuverlässig um."
+},
+
+
   { cat:"innen", title:"Innenarbeiten – Decke",     img:"../img/malerindecke.png",      desc:"Deckenflächen sauber vorbereitet und gleichmäßig ausgeführt.", },
   { cat:"innen", title:"Innenarbeiten – Dach",      img:"../img/malerdachgeschoss.png", desc:"Sauberer Ablauf im Dachgeschoss – klar, ordentlich, professionell.",  },
 
@@ -45,7 +53,7 @@ const PROJECTS = [
   { cat:"fassade", title:"Terrasse",               img:"../img/terasse.png",            desc:"Außenfläche sauber gepflegt – ordentliches Finish.",  },
 
   // Optional (wenn du’s drin haben willst)
-    { cat:"detail", title:"Melanie Cugnata - Inhaberin",      img:"../img/melanie.png",            desc:"Meistermalerin seit 2014",  },
+  { cat:"detail", title:"Melanie – Portrait",      img:"../img/melanie.png",            desc:"Portraitaufnahme – optional für Vertrauen/Authentizität.",  },
 ];
 
 
