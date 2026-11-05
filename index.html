@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meistermalerin – Malermeisterin</title>
+  <meta name="description" content="Meistermalerin: professionelle Malerarbeiten für innen und außen. Verlässliche Angebote, flexible Termine, Farbberatung und Markenprodukte." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script defer src="responsive.js"></script>
+</head>
+
+<body>
+  <a class="skip" href="#content">Zum Inhalt springen</a>
+
+ <!-- TOPBAR -->
+<header class="topbar" id="top">
+  <div class="wrap topbar__inner">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="brand" href="index.html" aria-label="Start">
+        <img src="img/Logo.png" alt="Meistermalerin Logo">
+      </a>
+
+      <div class="nav__links" aria-label="Navigation (Desktop)">
+        <a class="nav__link" href="index.html">Start</a>
+        <a class="nav__link" href="leistungen/index.html">Leistungen</a>
+        <a class="nav__link" href="aboutme/index.html">Über mich</a>
+        <a class="nav__link" href="projekte/index.html">Projekte</a>
+      </div>
+
+      <div class="nav__right">
+        <a class="nav__btn" href="#kontakt">Anfrage</a>
+
+        <!-- CALL ICON (nur Icon sichtbar, Nummer im Hintergrund) -->
+        <a class="nav__call"
+           href="tel:+4916090156126"
+           aria-label="Jetzt anrufen">
+          <svg viewBox="0 0 24 24"
+               width="20"
+               height="20"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2
+                     19.8 19.8 0 0 1-8.6-3.1
+                     19.5 19.5 0 0 1-6-6
+                     A19.8 19.8 0 0 1 2.1 4.2
+                     2 2 0 0 1 4.1 2h3
+                     a2 2 0 0 1 2 1.7
+                     c.1.9.3 1.8.6 2.6
+                     a2 2 0 0 1-.45 2.1
+                     L8.1 9.6
+                     a16 16 0 0 0 6.3 6.3
+                     l1.2-1.2
+                     a2 2 0 0 1 2.1-.45
+                     c.8.3 1.7.5 2.6.6
+                     A2 2 0 0 1 22 16.9z"/>
+          </svg>
+        </a>
+
+        <button class="nav__burger" type="button"
+                aria-label="Menü öffnen"
+                aria-expanded="false"
+                aria-controls="navMobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="navMobile" id="navMobile" hidden>
+      <a class="nav__link" href="index.html">Start</a>
+      <a class="nav__link" href="leistungen/index.html">Leistungen</a>
+      <a class="nav__link" href="aboutme/index.html">Über mich</a>
+      <a class="nav__link" href="projekte/index.html">Projekte</a>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Einstieg">
+      <div class="hero__slides" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__center" role="group" aria-label="Meistermalerin">
+        <img class="hero__logo" src="img/Logo.png" alt="Meistermalerin Logo">
+
+        <p class="hero__person">Melanie Cugnata</p>
+        <p class="hero__name">MEISTERMALERIN</p>
+
+       <!-- <div class="hero__meta" aria-label="Kurzvorteile">
+          <span class="pill">Meisterbetrieb</span>
+          <span class="pill">Sauber & termintreu</span>
+          <span class="pill">Transparente Angebote</span>
+        </div>-->
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#kontakt">Jetzt anfragen</a>
+        </div>
+
+
+      </div>
+
+      <a class="hero__scroll" href="#leistungen" aria-label="Zum Inhalt scrollen">
+        <span class="hero__scrollDot" aria-hidden="true"></span>
+      </a>
+    </section>
+
+   <!-- LEISTUNGEN -->
+<section class="section" id="leistungen" aria-labelledby="leistungenTitle">
+  <div class="wrap">
+    <header class="sectionHead">
+      <p class="kicker">Leistungen</p>
+      <h2 class="sectionTitle" id="leistungenTitle">Alles aus einer Hand</h2>
+    </header>
+
+    <!-- ✅ Carousel (Pfeile + Viewport + Track) -->
+    <div class="servicesCarousel" aria-label="Leistungen Karussell">
+      <button class="carouselArrow carouselArrow--left" type="button"
+              aria-label="Vorherige Leistung" data-carousel-prev>
+        ‹
+      </button>
+
+      <div class="servicesViewport" data-carousel-viewport tabindex="0" aria-label="Leistungen">
+        <div class="servicesTrack" data-carousel-track>
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#maler-lackier"
+             data-href="leistungen/index.html#maler-lackier"
+             aria-label="Maler- und Lackierarbeiten">
+            <div class="serviceMedia">
+              <img src="img/malerinwand.png" alt="Maler- und Lackierarbeiten" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Maler- und Lackierarbeiten</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#fassade"
+             data-href="leistungen/index.html#fassade"
+             aria-label="Fassadengestaltung">
+            <div class="serviceMedia">
+              <img src="img/malerinausenwand.png" alt="Fassadengestaltung" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Fassadengestaltung</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+        <!-- <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#stuck"
+             data-href="leistungen/index.html#stuck"
+             aria-label="Stuckprofile">
+            <div class="serviceMedia">
+              <img src="img/stuckdecke.png" alt="Stuckprofile" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Stuckprofile</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+                --> 
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#tapeten"
+             data-href="leistungen/index.html#tapeten"
+             aria-label="Tapeten und Anstriche">
+            <div class="serviceMedia">
+              <img src="img/tapeteabschnitt.jpeg" alt="Tapeten und Anstriche" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Tapeten und Anstriche</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#boden"
+             data-href="leistungen/index.html#boden"
+             aria-label="Bodenverlegung">
+            <div class="serviceMedia">
+              <img src="img/bodenarbeit.png" alt="Bodenverlegung" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Bodenverlegung</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#holz"
+             data-href="leistungen/index.html#holz"
+             aria-label="Holzbauteile">
+            <div class="serviceMedia">
+              <img src="img/gartenhütte.png" alt="Holzbauteile" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Holzbauteile</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#spachtel"
+             data-href="leistungen/index.html#spachtel"
+             aria-label="Spachtelarbeiten">
+            <div class="serviceMedia">
+              <img src="img/malerindecke.png" alt="Spachtelarbeiten" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Spachtelarbeiten</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#lackier"
+             data-href="leistungen/index.html#lackier"
+             aria-label="Lackierarbeiten">
+            <div class="serviceMedia">
+              <img src="img/wendltreppeunten.png" alt="Lackierarbeiten" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Lackierarbeiten</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+
+          <a class="serviceCard serviceCard--link"
+             href="leistungen/index.html#renovierung"
+             data-href="leistungen/index.html#renovierung"
+             aria-label="Renovierung & Reparatur">
+            <div class="serviceMedia">
+              <img src="img/malerinvorfenster.png" alt="Renovierung & Reparatur" loading="lazy">
+            </div>
+            <div class="serviceBody serviceBody--compact">
+              <h3 class="serviceTitle">Renovierung & Reparatur</h3>
+              <span class="serviceMore">Mehr erfahren</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <button class="carouselArrow carouselArrow--right" type="button"
+              aria-label="Nächste Leistung" data-carousel-next>
+        ›
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- VERSPRECHEN -->
+  <!-- VERSPRECHEN -->
+<section class="section section--paper" id="versprechen" aria-labelledby="promiseTitle">
+  <div class="wrap">
+    <header class="sectionHead">
+      <p class="kicker">Versprechen</p>
+      <h2 class="sectionTitle" id="promiseTitle">Mein Versprechen an Sie</h2>
+      <p class="sectionLead">Klar, sauber und verlässlich – damit Sie sich vom ersten Gespräch bis zum Finish sicher fühlen.</p>
+    </header>
+
+    <div class="promiseGrid">
+      <article class="promiseTile promiseTile--quality">
+        <div class="promiseTile__media" aria-hidden="true"></div>
+        <div class="promiseTile__shade" aria-hidden="true"></div>
+        <div class="promiseTile__content">
+          <h3>Meisterqualität</h3>
+          <p>Präzise Ausführung, saubere Kanten, perfekt geschützte Flächen – ohne Stress.</p>
+        </div>
+      </article>
+
+      <article class="promiseTile promiseTile--quote">
+        <div class="promiseTile__media" aria-hidden="true"></div>
+        <div class="promiseTile__shade" aria-hidden="true"></div>
+        <div class="promiseTile__content">
+          <h3>Transparente Angebote</h3>
+          <p>Fair, nachvollziehbar und verlässlich kalkuliert – Sie wissen vorher, was gemacht wird.</p>
+        </div>
+      </article>
+
+      <article class="promiseTile promiseTile--calendar">
+        <div class="promiseTile__media" aria-hidden="true"></div>
+        <div class="promiseTile__shade" aria-hidden="true"></div>
+        <div class="promiseTile__content">
+          <h3>Termintreu & sauber</h3>
+          <p>Strukturierter Ablauf, pünktliche Umsetzung und eine Baustelle, die ordentlich bleibt.</p>
+        </div>
+      </article>
+
+      <article class="promiseTile promiseTile--color">
+        <div class="promiseTile__media" aria-hidden="true"></div>
+        <div class="promiseTile__shade" aria-hidden="true"></div>
+        <div class="promiseTile__content">
+          <h3>Gestaltung, die passt</h3>
+          <p>Farben, Licht und Stil als Gesamtbild – modern, harmonisch und zeitlos.</p>
+        </div>
+      </article>
+
+      <article class="promiseTile promiseTile--brands">
+        <div class="promiseTile__media" aria-hidden="true"></div>
+        <div class="promiseTile__shade" aria-hidden="true"></div>
+        <div class="promiseTile__content">
+          <h3>Markenprodukte</h3>
+          <p>Hochwertige Materialien für Beständigkeit, Farbtreue und ein starkes Finish.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+  <!-- KONTAKT -->
+<section class="section" id="kontakt" aria-labelledby="kontaktTitle">
+  <div class="wrap narrow">
+    <header class="sectionHead sectionHead--center">
+      <p class="kicker">Kontakt</p>
+      <h2 class="sectionTitle" id="kontaktTitle">Unverbindliche Anfrage</h2>
+      <p class="sectionLead">Schreiben Sie kurz worum es geht – ich melde mich zeitnah zurück.</p>
+    </header>
+
+    <form class="form" id="contactForm"
+          action="https://formspree.io/f/mwvvveva"
+          method="POST"
+          novalidate>
+
+      <!-- Honeypot (Spam-Schutz) -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;"
+             aria-hidden="true">
+
+      <!-- Fixer Email-Betreff -->
+      <input type="hidden" name="_subject" value="Kontakt Anfrage Meistermalerin.de">
+
+      <!-- Optionale: Antwort an Kunde (Reply-To) -->
+      <input type="hidden" name="_replyto" id="replyToField">
+
+      <div class="form__row">
+        <label>
+          <span>Name</span>
+          <input name="Name" required autocomplete="name">
+        </label>
+        <label>
+          <span>Telefon</span>
+          <input name="Telefon" inputmode="tel" autocomplete="tel">
+        </label>
+      </div>
+
+      <label>
+        <span>E-Mail</span>
+        <input type="email" name="E-Mail" id="emailField" required autocomplete="email">
+      </label>
+
+      <label>
+        <span>Nachricht</span>
+        <textarea name="Nachricht" rows="5" required></textarea>
+      </label>
+
+      <button class="btn btn--primary btn--full" type="submit" id="contactSubmit">
+        Senden
+      </button>
+
+      <p class="note" id="formNote" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- Formspree Script -->
+<script>
+(() => {
+  "use strict";
+
+  const form = document.getElementById("contactForm");
+  const note = document.getElementById("formNote");
+  const btn  = document.getElementById("contactSubmit");
+  const emailInput = document.getElementById("emailField");
+  const replyTo = document.getElementById("replyToField");
+  if (!form || !note || !btn) return;
+
+  const setNote = (msg) => {
+    note.textContent = msg;
+    note.style.opacity = "1";
+    note.style.marginTop = "10px";
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setNote("Bitte prüfen Sie Ihre Angaben – Name, E-Mail und Nachricht sind Pflicht.");
+      return;
+    }
+
+    // Set reply-to so you can answer directly to the customer
+    if (emailInput && replyTo) replyTo.value = emailInput.value.trim();
+
+    const hp = form.querySelector('input[name="_gotcha"]');
+    if (hp && hp.value.trim() !== "") return;
+
+    const action = form.getAttribute("action");
+    if (!action) {
+      setNote("Formular ist nicht korrekt konfiguriert.");
+      return;
+    }
+
+    btn.disabled = true;
+    const oldText = btn.textContent;
+    btn.textContent = "Senden…";
+
+    try {
+      const data = new FormData(form);
+
+      const res = await fetch(action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        setNote("Danke! Ihre Anfrage ist eingegangen – ich melde mich zeitnah.");
+      } else {
+        let msg = "Das hat leider nicht geklappt. Bitte versuchen Sie es erneut.";
+        try {
+          const j = await res.json();
+          if (j && j.errors && j.errors.length) msg = j.errors.map(x => x.message).join(" ");
+        } catch (_) {}
+        setNote(msg);
+      }
+    } catch (_) {
+      setNote("Keine Verbindung. Bitte prüfen Sie Ihr Internet und versuchen Sie es erneut.");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = oldText;
+    }
+  });
+})();
+</script>
+
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+  <div class="wrap footer__inner">
+
+      
+
+    <a class="footerLink" href="impressum.html" aria-label="Impressum">
+      <span class="footerLink__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6"/>
+          <path d="M16 13H8"/>
+          <path d="M16 17H8"/>
+          <path d="M10 9H8"/>
+        </svg>
+      </span>
+      <span class="footerLink__label">Impressum</span>
+    </a>
+
+    <a class="footerLink" href="datenschutz.html" aria-label="Datenschutz">
+      <span class="footerLink__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </span>
+      <span class="footerLink__label">Datenschutz</span>
+    </a>
+
+    <p class="footerCopy">
+  © <span id="year"></span> Meistermalerin – Erstellt durch 
+  <a href="https://www.fuerst-software.com" 
+     target="_blank" 
+     rel="noopener noreferrer">
+     Fürst Software
+  </a>
+</p>
+
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+
